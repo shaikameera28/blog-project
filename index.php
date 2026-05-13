@@ -1,3 +1,3 @@
 <?php
-echo "Internship Started";
+echo "ApexPlanet Internship Started";
 ?>
