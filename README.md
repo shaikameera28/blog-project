@@ -24,5 +24,5 @@ This is my PHP and MySQL internship project for ApexPlanet Software Pvt. Ltd.
 - Added Basic CSS Styling
 
 ## Project URL
-http://localhost/blog-project
+https://localhost/blog-project
 
