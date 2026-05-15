@@ -11,7 +11,7 @@ if(isset($_POST['register'])) {
             VALUES ('$username', '$password')";
 
     if($conn->query($sql) === TRUE) {
-        echo "Registration Successful!";
+       header("Location: login.php");
     } else {
         echo "Error: " . $conn->error;
     }
@@ -21,31 +21,63 @@ if(isset($_POST['register'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    
+
     <title>Register</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
 </head>
-<body>
 
-<h2>User Registration</h2>
+<body class="bg-light">
 
-<form method="POST">
+<div class="container">
 
-    <input type="text"
-           name="username"
-           placeholder="Enter Username"
-           required><br><br>
+    <div class="row justify-content-center mt-5">
 
-    <input type="password"
-           name="password"
-           placeholder="Enter Password"
-           required><br><br>
+        <div class="col-md-5">
 
-    <button type="submit"
-            name="register">
-            Register
-    </button>
+            <div class="card shadow">
 
-</form>
+                <div class="card-body">
+
+                    <h2 class="text-center mb-4">
+                        User Registration
+                    </h2>
+
+                    <form method="POST">
+
+                        <input type="text"
+                               name="username"
+                               class="form-control mb-3"
+                               placeholder="Enter Username"
+                               required>
+
+                        <input type="password"
+                               name="password"
+                               class="form-control mb-3"
+                               placeholder="Enter Password"
+                               required>
+
+                        <button type="submit"
+                                name="register"
+                                class="btn btn-success w-100">
+
+                                Register
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>

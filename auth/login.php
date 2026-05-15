@@ -22,7 +22,7 @@ if(isset($_POST['login'])) {
 
             $_SESSION['user'] = $username;
 
-            echo "Login Successful!";
+             header("Location: ../index.php");
 
         } else {
 
@@ -39,31 +39,63 @@ if(isset($_POST['login'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    
+
     <title>Login</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
 </head>
-<body>
 
-<h2>User Login</h2>
+<body class="bg-light">
 
-<form method="POST">
+<div class="container">
 
-    <input type="text"
-           name="username"
-           placeholder="Enter Username"
-           required><br><br>
+    <div class="row justify-content-center mt-5">
 
-    <input type="password"
-           name="password"
-           placeholder="Enter Password"
-           required><br><br>
+        <div class="col-md-5">
 
-    <button type="submit"
-            name="login">
-            Login
-    </button>
+            <div class="card shadow">
 
-</form>
+                <div class="card-body">
+
+                    <h2 class="text-center mb-4">
+                        User Login
+                    </h2>
+
+                    <form method="POST">
+
+                        <input type="text"
+                               name="username"
+                               class="form-control mb-3"
+                               placeholder="Enter Username"
+                               required>
+
+                        <input type="password"
+                               name="password"
+                               class="form-control mb-3"
+                               placeholder="Enter Password"
+                               required>
+
+                        <button type="submit"
+                                name="login"
+                                class="btn btn-primary w-100">
+
+                                Login
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>
