@@ -130,7 +130,8 @@ $total_pages = ceil($total_posts / $limit);
                    Edit
                 </a>
 
-                <?php if($_SESSION['role'] == 'admin') { ?>
+                <?php if(isset($_SESSION['role']) &&
+          $_SESSION['role'] == 'admin') { ?>
 
                 <a href="posts/delete.php?id=<?php echo $row['id']; ?>"
                    class="btn btn-danger btn-sm"
