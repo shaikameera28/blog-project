@@ -3,9 +3,13 @@ include '../config/db.php';
 
 $id = $_GET['id'];
 
-$sql = "DELETE FROM posts WHERE id=$id";
+$stmt = $conn->prepare(
+    "DELETE FROM posts WHERE id=?"
+);
 
-if($conn->query($sql) === TRUE) {
+$stmt->bind_param("i", $id);
+
+if($stmt->execute()) {
 
     header("Location: ../index.php");
 

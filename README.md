@@ -45,12 +45,40 @@ This is my PHP and MySQL internship project for ApexPlanet Software Pvt. Ltd.
 * Responsive Buttons and Forms
 * Improved Session-Based Authentication Flow
 
-## GitHub Updates
+## Task 4 Completed
 
-* Updated GitHub Repository with Task 3 Features
-* Added Advanced Blog Functionality
-* Improved Project Structure and UI
+* Implemented Security Enhancements
+* Added Prepared Statements using MySQLi
+* Prevented SQL Injection Attacks
+* Implemented Server-Side Validation
+* Implemented Client-Side Validation
+* Added Password Hashing using `password_hash()`
+* Added Secure Password Verification using `password_verify()`
+* Secured Login Functionality
+* Secured Registration Functionality
+* Secured Create, Edit, and Delete Operations
+* Implemented User Roles and Permissions
+* Added Role-Based Access Control
+* Restricted Delete Access to Admin Users
+* Improved Session-Based Authentication
+* Enhanced Overall Application Security
 
+## Security Features Added
+
+* Prepared Statements for All Database Queries
+* Input Validation for Forms
+* Password Security and Encryption
+* Session Handling and Access Protection
+* Admin and Editor Role Management
+* Secure CRUD Operations
+
+## Deliverables Completed
+
+* Secure Web Application
+* Role-Based Authentication System
+* SQL Injection Protection
+* Validation and Access Control
+* Updated GitHub Repository with Task 4 Features
 
 ## Project URL
 Open browser and run:

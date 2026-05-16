@@ -13,10 +13,16 @@ if(isset($_POST['submit'])) {
 
     $content = $_POST['content'];
 
-    $sql = "INSERT INTO posts (title, content)
-            VALUES ('$title', '$content')";
+    $stmt = $conn->prepare(
+    "INSERT INTO posts(title, content)
+     VALUES(?, ?)"
+);
 
-    if($conn->query($sql) === TRUE) {
+$stmt->bind_param("ss",
+                  $title,
+                  $content);
+
+if($stmt->execute()) {
 
      header("Location: ../index.php");   
 

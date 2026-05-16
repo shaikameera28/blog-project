@@ -3,9 +3,15 @@ include '../config/db.php';
 
 $id = $_GET['id'];
 
-$sql = "SELECT * FROM posts WHERE id=$id";
+$stmt = $conn->prepare(
+    "SELECT * FROM posts WHERE id=?"
+);
 
-$result = $conn->query($sql);
+$stmt->bind_param("i", $id);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
 
 $post = $result->fetch_assoc();
 
@@ -15,12 +21,18 @@ if(isset($_POST['update'])) {
 
     $content = $_POST['content'];
 
-    $update_sql = "UPDATE posts
-                   SET title='$title',
-                       content='$content'
-                   WHERE id=$id";
+    $update_stmt = $conn->prepare(
+        "UPDATE posts
+         SET title=?, content=?
+         WHERE id=?"
+    );
 
-    if($conn->query($update_sql) === TRUE) {
+    $update_stmt->bind_param("ssi",
+                             $title,
+                             $content,
+                             $id);
+
+    if($update_stmt->execute()) {
 
         header("Location: ../index.php");
 

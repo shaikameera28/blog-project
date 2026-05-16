@@ -88,8 +88,11 @@ $total_pages = ceil($total_posts / $limit);
             </a>
 
             <a href="auth/logout.php"
-               class="btn btn-danger">
+               class="btn btn-danger"
+               onclick="return confirm('Are you sure you want to logout?')">
+
                Logout
+
             </a>
 
         </div>
@@ -127,6 +130,8 @@ $total_pages = ceil($total_posts / $limit);
                    Edit
                 </a>
 
+                <?php if($_SESSION['role'] == 'admin') { ?>
+
                 <a href="posts/delete.php?id=<?php echo $row['id']; ?>"
                    class="btn btn-danger btn-sm"
                    onclick="return confirm('Are you sure you want to delete this post?')">
@@ -134,6 +139,8 @@ $total_pages = ceil($total_posts / $limit);
                    Delete
 
                 </a>
+
+                <?php } ?>
 
             </div>
 

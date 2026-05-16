@@ -5,15 +5,42 @@ if(isset($_POST['register'])) {
 
     $username = $_POST['username'];
 
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = $_POST['password'];
 
-    $sql = "INSERT INTO users (username, password)
-            VALUES ('$username', '$password')";
+    $error = "";
 
-    if($conn->query($sql) === TRUE) {
-       header("Location: login.php");
-    } else {
-        echo "Error: " . $conn->error;
+    if(empty($username) || empty($password)) {
+
+        $error = "All fields are required!";
+    }
+
+    elseif(strlen($password) < 6) {
+
+        $error = "Password must be at least 6 characters!";
+    }
+
+    else {
+
+        $hashed_password = password_hash($password,
+                                         PASSWORD_DEFAULT);
+
+        $stmt = $conn->prepare(
+            "INSERT INTO users(username, password)
+             VALUES(?, ?)"
+        );
+
+        $stmt->bind_param("ss",
+                          $username,
+                          $hashed_password);
+
+        if($stmt->execute()) {
+
+            header("Location: login.php");
+
+        } else {
+
+            echo "Registration Failed!";
+        }
     }
 }
 ?>
@@ -45,6 +72,15 @@ if(isset($_POST['register'])) {
                         User Registration
                     </h2>
 
+                    <?php
+
+                    if(!empty($error)) {
+
+                     echo "<div class='alert alert-danger'>
+                            $error
+                           </div>";
+                    }
+                    ?>
                     <form method="POST">
 
                         <input type="text"
@@ -57,6 +93,7 @@ if(isset($_POST['register'])) {
                                name="password"
                                class="form-control mb-3"
                                placeholder="Enter Password"
+                               minlength="6"
                                required>
 
                         <button type="submit"
