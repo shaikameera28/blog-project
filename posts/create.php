@@ -5,6 +5,7 @@ include '../config/db.php';
 
 if(!isset($_SESSION['user'])) {
     header("Location: ../auth/login.php");
+    exit();
 }
 
 if(isset($_POST['submit'])) {
@@ -25,7 +26,7 @@ $stmt->bind_param("ss",
 if($stmt->execute()) {
 
      header("Location: ../index.php");   
-
+     exit();
     } else {
 
         echo "Error: " . $conn->error;

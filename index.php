@@ -3,7 +3,7 @@ session_start();
 
 include 'config/db.php';
 
-$limit = 5;
+$limit = 4;
 
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
@@ -52,52 +52,69 @@ $total_pages = ceil($total_posts / $limit);
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet">
+<style>
 
+.card {
+
+    transition: 0.3s;
+}
+
+.card:hover {
+
+    transform: scale(1.02);
+
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+}
+
+</style>
 </head>
 
 <body class="bg-light">
 
 <div class="container mt-5">
+    <h1 class="text-primary mb-4 fw-bold">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    My Blog
 
-        <h1 class="text-primary">My Blog</h1>
-        
-        <form method="GET" class="mb-4">
+</h1>
 
-    <div class="input-group">
+    <div class="d-flex align-items-center gap-2 mb-4">
+
+    <form method="GET" class="d-flex">
 
         <input type="text"
                name="search"
-               class="form-control"
-               placeholder="Search posts...">
+               class="form-control me-2"
+               placeholder="Search blogs..."
+               style="width: 400px;">
 
-        <button class="btn btn-dark"
+        <button class="btn btn-primary"
                 type="submit">
-                Search
+
+            Search
+
         </button>
 
-    </div>
+    </form>
 
-</form>
-        <div>
+    <a href="posts/create.php"
+       class="btn btn-success">
 
-            <a href="posts/create.php"
-               class="btn btn-success">
-               Create Post
-            </a>
+       Create Post
 
-            <a href="auth/logout.php"
-               class="btn btn-danger"
-               onclick="return confirm('Are you sure you want to logout?')">
+    </a>
 
-               Logout
+    <a href="auth/logout.php"
+       class="btn btn-danger"
+       onclick="return confirm('Are you sure you want to logout?')">
 
-            </a>
+       Logout
 
-        </div>
+    </a>
 
-    </div>
+</div>
+
+
 
     <?php
 
@@ -159,26 +176,33 @@ $total_pages = ceil($total_posts / $limit);
     }
 
     ?>
-<div class="d-flex justify-content-center mt-4">
+<nav>
 
-<?php
+    <ul class="pagination justify-content-center">
 
-for($i = 1; $i <= $total_pages; $i++) {
+        <?php for($i = 1; $i <= $total_pages; $i++) { ?>
 
-?>
+            <li class="page-item">
 
-    <a href="?page=<?php echo $i; ?>"
-       class="btn btn-outline-primary me-2">
+                <a class="page-link"
+                   href="?page=<?php echo $i; ?>">
 
-       <?php echo $i; ?>
+                   <?php echo $i; ?>
 
-    </a>
+                </a>
 
-<?php
-}
-?>
+            </li>
 
-</div>
+        <?php } ?>
 
+    </ul>
+
+</nav>
+
+<footer class="bg-dark text-white text-center p-3 mt-5">
+
+    Blog Project © 2026 | Developed by Ameera
+
+</footer>
 </body>
 </html>
